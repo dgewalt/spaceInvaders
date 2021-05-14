@@ -6,12 +6,13 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.FXMLDocumentController">
+<?import main.java.gameview.GameBoardUI?>
+<AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.usercontrol.FXMLDocumentController">
    <children>
       <VBox layoutX="250.0" layoutY="111.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label alignment="CENTER" minWidth="-Infinity" prefHeight="20.0" prefWidth="600.0" text="Label" textAlignment="CENTER" />
-            <Canvas height="580.0" width="600.0" />
+            <GameBoardUI height="580.0" width="600.0" />
          </children>
       </VBox>
    </children>

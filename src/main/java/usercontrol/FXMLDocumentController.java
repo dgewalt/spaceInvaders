@@ -1,4 +1,4 @@
-package main.java;
+package main.java.usercontrol;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
