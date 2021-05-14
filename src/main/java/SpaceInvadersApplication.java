@@ -3,9 +3,7 @@ package main.java;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class SpaceInvadersApplication extends Application {
@@ -20,7 +18,6 @@ public class SpaceInvadersApplication extends Application {
         primaryStage.setWidth(APPLICATION_WIDTH);
         primaryStage.setHeight(APPLICATION_HEIGHT);
 
-        VBox mainBox = new VBox();
         Pane root = FXMLLoader.load(getClass().getClassLoader().getResource("FXMLDocument.fxml"));
         Scene mainMenu = new Scene(root);
         primaryStage.setScene(mainMenu);
@@ -31,13 +28,4 @@ public class SpaceInvadersApplication extends Application {
         launch(args);
     }
 
-    private static Scene createMainMenu() {
-        Button button1 = new Button("Test");
-        Button button2 = new Button("Test");
-
-        VBox vBox = new VBox(button1, button2);
-
-        return new Scene(vBox);
-
-    }
 }
