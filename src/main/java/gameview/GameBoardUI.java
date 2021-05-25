@@ -2,8 +2,8 @@ package main.java.gameview;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.paint.Color;
-import main.java.Dimension2D;
-import main.java.GameBoard;
+import main.java.model.Dimension2D;
+import main.java.model.GameBoard;
 
 import java.util.Timer;
 
