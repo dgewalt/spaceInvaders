@@ -24,8 +24,9 @@ public class GameBoardUI extends Canvas {
     private GameBoard gameBoard;
     private Timer gameTimer;
 
-    public GameBoardUI() {
-        setup();
+    public GameBoardUI(GameBoard gameBoard) {
+        this.gameBoard = gameBoard;
+//        setup();
     }
 
     private void setup() {
