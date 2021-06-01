@@ -1,4 +1,4 @@
-package main.java.gameview;
+package main.java.view;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

@@ -1,4 +1,4 @@
-package main.java.gameview;
+package main.java.view;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.paint.Color;
@@ -23,12 +23,10 @@ public class UserInterface extends Canvas {
         return DEFAULT_SIZE;
     }
 
-    private GameBoard gameBoard;
     private Timer gameTimer;
 
-    public UserInterface(GameBoard gameBoard) {
-        this.gameBoard = gameBoard;
-//        setup();
+    public UserInterface() {
+    	
     }
 
     void initialize() {
