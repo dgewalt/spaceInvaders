@@ -2,16 +2,19 @@ package main.java.model;
 
 public class GameBoard {
 
-    private final Dimension2D size;
+    private int size;
+    private String background;
 
-    private final Player player;
+    private final Player currentPlayer;
+    private Player[] leaderBoard;
+    private MovingObject[] objects;
 
     private boolean running;
 
-    public GameBoard(Dimension2D size) {
+    public GameBoard(int size) {
         this.size = size;
 
-        this.player = new Player(new Spaceship());
+        this.currentPlayer = new Player(new Spaceship());
     }
 
     public boolean isRunning() {
@@ -24,5 +27,13 @@ public class GameBoard {
 
     public void stopGame() {
         this.running = false;
+    }
+    
+    public void configureGame() {
+    	
+    }
+    
+    public void moveAliens() {
+    	
     }
 }

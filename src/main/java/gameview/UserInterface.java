@@ -7,7 +7,9 @@ import main.java.model.GameBoard;
 
 import java.util.Timer;
 
-public class GameBoardUI extends Canvas {
+public class UserInterface extends Canvas {
+	
+	private UserInterface userInterface;
 
     private static final Color BACKGROUND_COLOR = Color.WHITE;
 
@@ -24,18 +26,24 @@ public class GameBoardUI extends Canvas {
     private GameBoard gameBoard;
     private Timer gameTimer;
 
-    public GameBoardUI(GameBoard gameBoard) {
+    public UserInterface(GameBoard gameBoard) {
         this.gameBoard = gameBoard;
 //        setup();
     }
 
-    private void setup() {
+    void initialize() {
         setupGameBoard();
     }
 
     private void setupGameBoard() {
 
     }
+    
+    void paintObjects() {
+    	
+    }
+    
+    
 
 
 }
