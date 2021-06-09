@@ -13,7 +13,9 @@ public class UserInputController {
     private GameBoard gameBoard;
 
     @FXML
-    private Button button1;
+    private Button startbutton1;
+    @FXML
+    private Button startbutton2;
 
     @FXML
     private Button settingsButton;
@@ -40,8 +42,14 @@ public class UserInputController {
 
 
     public void startGame() throws Exception {
-        Stage stage = (Stage) button1.getScene().getWindow();
+        Stage stage = (Stage) startbutton1.getScene().getWindow();
         stage.setScene(new Scene(gameBoard.getUi()));
+    }
+    
+    public void startGame2() throws Exception {
+        Stage stage = (Stage) startbutton2.getScene().getWindow();
+        stage.setScene(new Scene(gameBoard.getUi()));
+        System.out.println("pressed");
     }
     
     public void alien1Clicked() throws Exception{

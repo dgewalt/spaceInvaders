@@ -15,8 +15,8 @@ import main.java.model.GameBoard;
 public class SpaceInvadersApplication extends Application {
 
 
-    private static final int APPLICATION_WIDTH = 600;
-    private static final int APPLICATION_HEIGHT = 600;
+    private static final int APPLICATION_WIDTH = 800;
+    private static final int APPLICATION_HEIGHT = 800;
 
     private GameBoard gameBoard;
     private UserInputController controller;
