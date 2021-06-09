@@ -43,4 +43,8 @@ public class GameBoard {
     public void setUi(UserInterface ui) {
     	this.ui = ui;
     }
+    
+    public UserInterface getUi() {
+    	return ui;
+    }
 }
