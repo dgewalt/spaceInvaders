@@ -16,12 +16,12 @@
                   <Font name="Arial" size="30.0" />
                </font>
             </Label>
-            <Button fx:id="button1" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="50.0" prefWidth="150.0" text="Button">
+            <Button fx:id="button1" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="50.0" prefWidth="150.0" text="Start Game">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
             </Button>
-            <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="150.0" text="Button" />
+            <Button id="settingsButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openSettings" prefWidth="150.0" text="Configure Game" />
             <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="150.0" style="-fx-background-radius: 0; -fx-cursor: pointer;" text="Button">
                <VBox.margin>
                   <Insets />
