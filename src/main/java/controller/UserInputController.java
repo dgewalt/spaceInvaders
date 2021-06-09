@@ -39,10 +39,9 @@ public class UserInputController {
     private Button spaceship3;
 
 
-    public void buttonClicked() throws Exception {
+    public void startGame() throws Exception {
         Stage stage = (Stage) button1.getScene().getWindow();
-        Pane root = FXMLLoader.load(getClass().getClassLoader().getResource("FXMLGameBoard.fxml"));
-        stage.setScene(new Scene(root));
+        stage.setScene(new Scene(gameBoard.getUi()));
     }
     
     public void alien1Clicked() throws Exception{

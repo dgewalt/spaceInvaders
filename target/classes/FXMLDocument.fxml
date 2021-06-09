@@ -16,7 +16,7 @@
                   <Font name="Arial" size="30.0" />
                </font>
             </Label>
-            <Button fx:id="button1" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="50.0" prefWidth="150.0" text="Start Game">
+            <Button fx:id="button1" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#startGame" prefHeight="50.0" prefWidth="150.0" text="Start Game">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
