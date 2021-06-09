@@ -27,6 +27,8 @@ public class SpaceInvadersApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("FXMLDocument.fxml"));
         Pane root = fxmlLoader.load();
 
+        gameBoard = new GameBoard();
+
         controller = fxmlLoader.getController();
         controller.setGameBoard(gameBoard);
 
