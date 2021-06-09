@@ -73,7 +73,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>main.java.SpaceInvaders</mainClass>
+                            <mainClass>main.java.view.SpaceInvaders</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
