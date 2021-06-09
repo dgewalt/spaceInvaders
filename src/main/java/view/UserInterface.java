@@ -12,6 +12,7 @@ import main.java.model.Dimension2D;
 import main.java.model.GameBoard;
 
 import java.util.Timer;
+import java.util.TimerTask;
 
 public class UserInterface extends Pane {
 
@@ -68,16 +69,34 @@ public class UserInterface extends Pane {
 
     }
 
-    void initialize() {
-        setupGameBoard();
-    }
-
-    private void setupGameBoard() {
-
+    private void startTimer() {
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                updateGame();
+            }
+        };
+        if (this.gameTimer != null) {
+            this.gameTimer.cancel();
+        }
+        this.gameTimer = new Timer();
+        this.gameTimer.scheduleAtFixedRate(timerTask, UPDATE_PERIOD, UPDATE_PERIOD);
     }
     
     void paintObjects() {
     	
+    }
+
+    private void updateGame() {
+        if (gameBoard.isRunning()) {
+            // updates car positions and re-renders graphics
+            gameBoard.update();
+            paint();
+        }
+    }
+
+    private void paint() {
+
     }
     
     
