@@ -84,7 +84,11 @@ public class UserInputController {
 
     public void openSettings() throws Exception {
         Stage stage = (Stage) settingsButton.getScene().getWindow();
-        Pane root = FXMLLoader.load(getClass().getClassLoader().getResource("FXMLGameSettings.fxml"));
+//        Pane root = FXMLLoader.load(getClass().getClassLoader().getResource("FXMLGameSettings.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("FXMLGameSettings.fxml"));
+        Pane root = fxmlLoader.load();
+        ((UserInputController)fxmlLoader.getController()).setGameBoard(gameBoard);
+
         stage.setScene(new Scene(root));
     }
     
@@ -96,5 +100,6 @@ public class UserInputController {
 
     public void setGameBoard(GameBoard gameBoard) {
         this.gameBoard = gameBoard;
+        System.out.println("test");
     }
 }

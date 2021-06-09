@@ -15,8 +15,8 @@ import main.java.model.GameBoard;
 public class SpaceInvadersApplication extends Application {
 
 
-    private static final int APPLICATION_WIDTH = 800;
-    private static final int APPLICATION_HEIGHT = 800;
+    private static final int APPLICATION_WIDTH = 600;
+    private static final int APPLICATION_HEIGHT = 600;
 
     private GameBoard gameBoard;
     private UserInputController controller;
@@ -29,17 +29,18 @@ public class SpaceInvadersApplication extends Application {
         primaryStage.setHeight(APPLICATION_HEIGHT);
         primaryStage.setResizable(false);
 
+        gameBoard = new GameBoard(200);
+        UserInterface ui = new UserInterface(gameBoard);
+        gameBoard.setUi(ui);
+
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("FXMLDocument.fxml"));
         Pane root = fxmlLoader.load();
 
 
         controller = fxmlLoader.getController();
-        gameBoard = new GameBoard(200);
-
-        UserInterface ui = new UserInterface(gameBoard);
 
         controller.setGameBoard(gameBoard);
-        gameBoard.setUi(ui);
 
 
 

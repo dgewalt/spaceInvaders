@@ -69,6 +69,21 @@ public class UserInterface extends Pane {
 
     }
 
+    public void startGame() {
+        if (!this.gameBoard.isRunning()) {
+            this.gameBoard.startGame();
+            startTimer();
+            paint();
+        }
+    }
+
+    public void stopGame() {
+        if (this.gameBoard.isRunning()) {
+            this.gameBoard.stopGame();
+            this.gameTimer.cancel();
+        }
+    }
+
     private void startTimer() {
         TimerTask timerTask = new TimerTask() {
             @Override
