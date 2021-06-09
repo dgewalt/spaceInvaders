@@ -1,9 +1,11 @@
 package main.java.controller;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import main.java.model.GameBoard;
@@ -11,6 +13,7 @@ import main.java.model.GameBoard;
 public class UserInputController {
 
     private GameBoard gameBoard;
+    private Scene gameScene;
 
     @FXML
     private Button startbutton1;
@@ -42,13 +45,17 @@ public class UserInputController {
 
 
     public void startGame() throws Exception {
+    	gameScene = new Scene(gameBoard.getUi());
         Stage stage = (Stage) startbutton1.getScene().getWindow();
-        stage.setScene(new Scene(gameBoard.getUi()));
+        stage.setScene(gameScene);
+        startKeyHandler();
     }
     
     public void startGame2() throws Exception {
+    	gameScene = new Scene(gameBoard.getUi());
         Stage stage = (Stage) startbutton2.getScene().getWindow();
-        stage.setScene(new Scene(gameBoard.getUi()));
+        stage.setScene(gameScene);
+        startKeyHandler();
     }
     
     public void alien1Clicked() throws Exception{
@@ -99,5 +106,20 @@ public class UserInputController {
 
     public void setGameBoard(GameBoard gameBoard) {
         this.gameBoard = gameBoard;
+    }
+    
+    private void startKeyHandler() {
+    	gameScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                switch (event.getCode()) {
+                    case A: System.out.println("A"); break;
+                    case W: ;break;
+                    case S: ;break;
+                    case D: ;break;
+                    case SPACE: ;break;
+                }
+            }
+        });
     }
 }
