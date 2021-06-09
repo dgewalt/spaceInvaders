@@ -14,7 +14,9 @@ public class UserInputController {
 
     @FXML
     private Button button1;
-    
+
+    @FXML
+    private Button settingsButton;
     @FXML
     private Button background1;
     @FXML
@@ -60,7 +62,7 @@ public class UserInputController {
     	
     }
     public void background3Clicked() throws Exception{
-    	
+
     }
     
     public void spaceship1Clicked() throws Exception{
@@ -71,6 +73,12 @@ public class UserInputController {
     }
     public void spaceship3Clicked() throws Exception{
     	
+    }
+
+    public void openSettings() throws Exception {
+        Stage stage = (Stage) settingsButton.getScene().getWindow();
+        Pane root = FXMLLoader.load(getClass().getClassLoader().getResource("FXMLGameSettings.fxml"));
+        stage.setScene(new Scene(root));
     }
     
 

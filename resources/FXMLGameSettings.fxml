@@ -22,7 +22,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button id="background3" mnemonicParsing="false" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="2" onAction="#background3Clicked"/>
+            <Button fx:id="background3" mnemonicParsing="false" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="2" onAction="#background3Clicked"/>
             <Button id="background2" mnemonicParsing="false" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="1" onAction="#background2Clicked"/>
             <Button id="background1" mnemonicParsing="false" text="Button" GridPane.columnIndex="2" onAction="#background1Clicked"/>
             <Button id="alien3" mnemonicParsing="false" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="2" onAction="#alien3Clicked" />
