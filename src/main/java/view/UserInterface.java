@@ -29,7 +29,7 @@ public class UserInterface extends Pane {
 
     private static final int UPDATE_PERIOD = 1000 / 25;
     private static final int DEFAULT_WIDTH = 500;
-    private static final int DEFAULT_HEIGHT = 300;
+    private static final int DEFAULT_HEIGHT = 600;
 
     private static final Dimension2D DEFAULT_SIZE = new Dimension2D(DEFAULT_WIDTH, DEFAULT_HEIGHT);
 
@@ -42,6 +42,9 @@ public class UserInterface extends Pane {
     public UserInterface(GameBoard gameBoard) {
         this.gameBoard = gameBoard;
 
+        setHeight(DEFAULT_HEIGHT);
+        setWidth(DEFAULT_WIDTH);
+
         canvas = new Canvas();
         canvas.setWidth(DEFAULT_WIDTH);
         canvas.setHeight(DEFAULT_HEIGHT - 50);
@@ -53,9 +56,14 @@ public class UserInterface extends Pane {
         startGame = new Button("Start Game");
         stopGame = new Button("Stop Game");
         gameLabel = new Label("Space Invaders");
+        startGame.setVisible(true);
+        startGame.setMinSize(50, 20);
         gameToolBar = new HBox(startGame, stopGame, gameLabel);
 
         vBox = new VBox(gameToolBar, canvas);
+
+        this.getChildren().add(vBox);
+
 
 
     }

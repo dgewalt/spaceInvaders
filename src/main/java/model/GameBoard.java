@@ -20,6 +20,10 @@ public class GameBoard {
         this.currentPlayer = new Player(new Spaceship());
     }
 
+    public void update() {
+
+    }
+
     public boolean isRunning() {
         return this.running;
     }
