@@ -49,7 +49,6 @@ public class UserInputController {
     public void startGame2() throws Exception {
         Stage stage = (Stage) startbutton2.getScene().getWindow();
         stage.setScene(new Scene(gameBoard.getUi()));
-        System.out.println("pressed");
     }
     
     public void alien1Clicked() throws Exception{
@@ -100,6 +99,5 @@ public class UserInputController {
 
     public void setGameBoard(GameBoard gameBoard) {
         this.gameBoard = gameBoard;
-        System.out.println("test");
     }
 }
