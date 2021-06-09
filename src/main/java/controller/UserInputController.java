@@ -15,6 +15,7 @@ public class UserInputController {
     @FXML
     private Button button1;
 
+
     public void buttonClicked() throws Exception {
         Stage stage = (Stage) button1.getScene().getWindow();
         Pane root = FXMLLoader.load(getClass().getClassLoader().getResource("FXMLGameBoard.fxml"));

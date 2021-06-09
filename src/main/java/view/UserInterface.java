@@ -8,8 +8,7 @@ import main.java.model.GameBoard;
 import java.util.Timer;
 
 public class UserInterface extends Canvas {
-	
-	private UserInterface userInterface;
+
 
     private static final Color BACKGROUND_COLOR = Color.WHITE;
 
