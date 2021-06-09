@@ -27,19 +27,21 @@ public class SpaceInvadersApplication extends Application {
         primaryStage.setTitle("TumSpaceInvaders");
         primaryStage.setWidth(APPLICATION_WIDTH);
         primaryStage.setHeight(APPLICATION_HEIGHT);
+        primaryStage.setResizable(false);
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("FXMLDocument.fxml"));
         Pane root = fxmlLoader.load();
 
 
+        controller = fxmlLoader.getController();
         gameBoard = new GameBoard(200);
 
-
         UserInterface ui = new UserInterface(gameBoard);
+
+        controller.setGameBoard(gameBoard);
         gameBoard.setUi(ui);
 
-        controller = fxmlLoader.getController();
-        controller.setGameBoard(gameBoard);
+
 
 
         Scene mainMenu = new Scene(root);
