@@ -13,20 +13,18 @@
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="300.0" text="Main Menu" textAlignment="CENTER">
                <font>
-                  <Font name="Arial" size="30.0" />
+                  <Font name="Arial" size="38.0" />
                </font>
             </Label>
-            <Button fx:id="button1" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#startGame" prefHeight="50.0" prefWidth="150.0" text="Start Game">
+            <Button fx:id="button1" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#startGame" prefHeight="41.0" prefWidth="151.0" text="Start Game">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
             </Button>
-            <Button fx:id="settingsButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openSettings" prefWidth="150.0" text="Configure Game" />
-            <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="150.0" style="-fx-background-radius: 0; -fx-cursor: pointer;" text="Button">
+            <Button fx:id="settingsButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openSettings" prefWidth="150.0" text="Configure Game">
                <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </Button>
+                  <Insets top="40.0" />
+               </VBox.margin></Button>
          </children>
       </VBox>
    </children>
