@@ -1,14 +1,29 @@
 package main.java.view;
 
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import main.java.model.Dimension2D;
 import main.java.model.GameBoard;
 
 import java.util.Timer;
 
-public class UserInterface extends Canvas {
+public class UserInterface extends Pane {
 
+
+    private VBox vBox;
+    private HBox gameToolBar ;
+    private Button startGame;
+    private Button stopGame;
+    private Label gameLabel;
+
+    private final Canvas canvas;
+    private final GameBoard gameBoard;
 
     private static final Color BACKGROUND_COLOR = Color.WHITE;
 
@@ -24,8 +39,25 @@ public class UserInterface extends Canvas {
 
     private Timer gameTimer;
 
-    public UserInterface() {
-    	
+    public UserInterface(GameBoard gameBoard) {
+        this.gameBoard = gameBoard;
+
+        canvas = new Canvas();
+        canvas.setWidth(DEFAULT_WIDTH);
+        canvas.setHeight(DEFAULT_HEIGHT - 50);
+        setupUIElements();
+
+    }
+
+    private void setupUIElements() {
+        startGame = new Button("Start Game");
+        stopGame = new Button("Stop Game");
+        gameLabel = new Label("Space Invaders");
+        gameToolBar = new HBox(startGame, stopGame, gameLabel);
+
+        vBox = new VBox(gameToolBar, canvas);
+
+
     }
 
     void initialize() {

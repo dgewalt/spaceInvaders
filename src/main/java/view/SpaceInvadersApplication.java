@@ -3,7 +3,11 @@ package main.java.view;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import main.java.controller.UserInputController;
 import main.java.model.GameBoard;
@@ -29,7 +33,9 @@ public class SpaceInvadersApplication extends Application {
 
 
         gameBoard = new GameBoard(200);
-        UserInterface ui = new UserInterface();
+
+
+        UserInterface ui = new UserInterface(gameBoard);
         gameBoard.setUi(ui);
 
         controller = fxmlLoader.getController();
