@@ -17,6 +17,7 @@ public class SpaceInvadersApplication extends Application {
     private GameBoard gameBoard;
     private UserInputController controller;
 
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("TumSpaceInvaders");
@@ -25,7 +26,10 @@ public class SpaceInvadersApplication extends Application {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("FXMLDocument.fxml"));
         Pane root = fxmlLoader.load();
-        UserInputController controller = fxmlLoader.getController();
+
+        controller = fxmlLoader.getController();
+        controller.setGameBoard(gameBoard);
+
 
         Scene mainMenu = new Scene(root);
         primaryStage.setScene(mainMenu);
