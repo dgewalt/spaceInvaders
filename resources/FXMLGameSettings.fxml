@@ -22,15 +22,15 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button id="background3" mnemonicParsing="false" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <Button id="background2" mnemonicParsing="false" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Button id="background1" mnemonicParsing="false" text="Button" GridPane.columnIndex="2" />
-            <Button id="alien3" mnemonicParsing="false" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button id="spaceship3" mnemonicParsing="false" text="Button" GridPane.rowIndex="2" />
-            <Button id="alien2" mnemonicParsing="false" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button id="spaceship2" mnemonicParsing="false" text="Button" GridPane.rowIndex="1" />
-            <Button id="alien1" mnemonicParsing="false" text="Button" GridPane.columnIndex="1" />
-            <Button id="spaceship1" mnemonicParsing="false" text="Button" />
+            <Button id="background3" mnemonicParsing="false" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="2" onAction="#background3Clicked"/>
+            <Button id="background2" mnemonicParsing="false" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="1" onAction="#background2Clicked"/>
+            <Button id="background1" mnemonicParsing="false" text="Button" GridPane.columnIndex="2" onAction="#background1Clicked"/>
+            <Button id="alien3" mnemonicParsing="false" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="2" onAction="#alien3Clicked" />
+            <Button id="spaceship3" mnemonicParsing="false" text="Button" GridPane.rowIndex="2" onAction="#spaceship3Clicked"/>
+            <Button id="alien2" mnemonicParsing="false" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="1" onAction="#alien1Clicked"/>
+            <Button id="spaceship2" mnemonicParsing="false" text="Button" GridPane.rowIndex="1" onAction="#spaceship2Clicked"/>
+            <Button id="alien1" mnemonicParsing="false" text="Button" GridPane.columnIndex="1" onAction="#alien1Clicked"/>
+            <Button id="spaceship1" mnemonicParsing="false" text="Button" onAction="#spaceship1Clicked"/>
          </children>
       </GridPane>
       <Button id="startButton" layoutX="210.0" layoutY="337.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="179.0" text="Start" />
