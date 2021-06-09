@@ -35,7 +35,7 @@ public class SpaceInvadersApplication extends Application {
         gameBoard = new GameBoard(200);
 
 
-        UserInterface ui = new UserInterface();
+        UserInterface ui = new UserInterface(gameBoard);
         gameBoard.setUi(ui);
 
         controller = fxmlLoader.getController();

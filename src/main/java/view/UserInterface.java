@@ -39,7 +39,8 @@ public class UserInterface extends Pane {
 
     private Timer gameTimer;
 
-    public UserInterface() {
+    public UserInterface(GameBoard gameBoard) {
+        this.gameBoard = gameBoard;
 
         canvas = new Canvas();
         canvas.setWidth(DEFAULT_WIDTH);
