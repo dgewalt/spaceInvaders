@@ -1,9 +1,12 @@
 package main.java.model;
 
+import main.java.view.UserInterface;
+
 public class GameBoard {
 
     private int size;
     private String background;
+    private UserInterface ui;
 
     private final Player currentPlayer;
     private Player[] leaderBoard;
@@ -35,5 +38,9 @@ public class GameBoard {
     
     public void moveAliens() {
     	
+    }
+    
+    public void setUi(UserInterface ui) {
+    	this.ui = ui;
     }
 }
