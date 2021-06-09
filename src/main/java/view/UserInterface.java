@@ -16,13 +16,14 @@ import java.util.Timer;
 public class UserInterface extends Pane {
 
 
-    VBox vBox;
-    HBox gameToolBar ;
-    Button startGame;
-    Button stopGame;
-    Label gameLabel;
+    private VBox vBox;
+    private HBox gameToolBar ;
+    private Button startGame;
+    private Button stopGame;
+    private Label gameLabel;
 
     private final Canvas canvas;
+    private final GameBoard gameBoard;
 
     private static final Color BACKGROUND_COLOR = Color.WHITE;
 
@@ -43,6 +44,8 @@ public class UserInterface extends Pane {
         canvas = new Canvas();
         canvas.setWidth(DEFAULT_WIDTH);
         canvas.setHeight(DEFAULT_HEIGHT - 50);
+        setupUIElements();
+
     }
 
     private void setupUIElements() {
