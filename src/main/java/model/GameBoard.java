@@ -19,7 +19,8 @@ public class GameBoard {
 
         this.currentPlayer = new Player(new Spaceship());
     }
-
+    
+    //
     public void update() {
 
     }
@@ -36,10 +37,12 @@ public class GameBoard {
         this.running = false;
     }
     
+    //TODO: Zweck? löschen?
     public void configureGame() {
     	
     }
     
+    //TODO: Zweck? löschen?
     public void moveAliens() {
     	
     }
