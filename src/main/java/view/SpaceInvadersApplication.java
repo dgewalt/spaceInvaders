@@ -29,6 +29,7 @@ public class SpaceInvadersApplication extends Application {
         primaryStage.setWidth(APPLICATION_WIDTH);
         primaryStage.setHeight(APPLICATION_HEIGHT);
         primaryStage.setResizable(false);
+        primaryStage.setOnCloseRequest(e -> System.exit(0));
 
         gameBoard = new GameBoard(APPLICATION_WIDTH, APPLICATION_HEIGHT);
         UserInterface ui = new UserInterface(gameBoard);
