@@ -13,6 +13,14 @@ public class Spaceship extends MovingObject{
 		// TODO Auto-generated method stub
 		
 	}
+
+	public void moveRight() {
+		setPosition(getPosition().getX() + 2, getPosition().getY());
+	}
+
+	public void moveLeft() {
+		setPosition(getPosition().getX() - 2, getPosition().getY());
+	}
 	
 
 }
