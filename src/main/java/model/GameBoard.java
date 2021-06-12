@@ -36,7 +36,9 @@ public class GameBoard {
     }
 
     public void update() {
-
+        for(Shot playershoot : playerShots){
+            playershoot.move();
+        }
     }
 
     public boolean isRunning() {
@@ -65,6 +67,10 @@ public class GameBoard {
 
     public void steerLeft(){
         currentPlayer.getSpaceship().moveLeft();
+    }
+
+    public void shoot(){
+        playerShots.add(new Shot(getSpaceship().getPosition()));
     }
 
     public Spaceship getSpaceship() {

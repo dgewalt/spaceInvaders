@@ -113,11 +113,11 @@ public class UserInputController {
             @Override
             public void handle(KeyEvent event) {
                 switch (event.getCode()) {
-                    case A: gameBoard.steerLeft();break;
+                    case A, LEFT: gameBoard.steerLeft();break;
                     case W: ;break;
                     case S: ;break;
-                    case D: gameBoard.steerRight();break;
-                    case SPACE: ;break;
+                    case D, RIGHT: gameBoard.steerRight();break;
+                    case SPACE: gameBoard.shoot();break;
                 }
             }
         });
