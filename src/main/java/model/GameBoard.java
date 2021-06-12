@@ -8,7 +8,7 @@ import java.util.List;
 
 public class GameBoard {
 
-//    private int size;
+    //    private int size;
     private Dimension2D size;
     private String background;
     private UserInterface ui;
@@ -26,7 +26,7 @@ public class GameBoard {
     public GameBoard(int width, int height) {
         this.size = new Dimension2D(width, height);
 
-        this.currentPlayer = new Player(new Spaceship(new Point2D(this.size.getWidth()/2, this.size.getHeight() - 100)));
+        this.currentPlayer = new Player(new Spaceship(new Point2D(this.size.getWidth() / 2, this.size.getHeight() - 100)));
 
 
         aliens = new LinkedList<>();
@@ -36,9 +36,7 @@ public class GameBoard {
     }
 
     public void update() {
-        for(Shot playershoot : playerShots){
-            playershoot.move();
-        }
+        moveShots();
     }
 
     public boolean isRunning() {
@@ -52,25 +50,38 @@ public class GameBoard {
     public void stopGame() {
         this.running = false;
     }
-    
+
     public void configureGame() {
-    	
-    }
-    
-    public void moveAliens() {
-    	
+
     }
 
-    public void steerRight(){
+    public void moveShots() {
+        for (int i = playerShots.size() - 1; i >= 0; i--) {
+            Shot playershot = playerShots.get(i);
+            if (playershot.getPosition().getY() <= 0 ) {
+                playerShots.remove(i);
+            } else {
+                System.out.println(playershot.getPosition().toString());
+                playershot.move();
+            }
+        }
+    }
+
+    public void moveAliens() {
+
+    }
+
+    public void steerRight() {
         currentPlayer.getSpaceship().moveRight();
     }
 
-    public void steerLeft(){
+    public void steerLeft() {
         currentPlayer.getSpaceship().moveLeft();
     }
 
-    public void shoot(){
-        playerShots.add(new Shot(getSpaceship().getPosition()));
+    public void shoot() {
+        if (playerShots.size() < 5)
+            playerShots.add(new Shot(getSpaceship().getPosition()));
     }
 
     public Spaceship getSpaceship() {
@@ -92,12 +103,12 @@ public class GameBoard {
     public Dimension2D getSize() {
         return this.size;
     }
-    
+
     public void setUi(UserInterface ui) {
-    	this.ui = ui;
+        this.ui = ui;
     }
-    
+
     public UserInterface getUi() {
-    	return ui;
+        return ui;
     }
 }
