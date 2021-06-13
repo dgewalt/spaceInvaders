@@ -8,10 +8,14 @@ import java.util.List;
 
 public class GameBoard {
 
-    //    private int size;
     private Dimension2D size;
     private String background;
     private UserInterface ui;
+
+    //enables measuring time for minimum time span between shots
+    private int frameCounter;
+    private static final int FPS = 25;
+    private static final int RECHARGE_TIME = 15;
 
     private final Player currentPlayer;
     private Player[] leaderBoard;
@@ -25,6 +29,7 @@ public class GameBoard {
 
     public GameBoard(int width, int height) {
         this.size = new Dimension2D(width, height);
+        this.frameCounter = 0;
 
         this.currentPlayer = new Player(new Spaceship(new Point2D(this.size.getWidth() / 2, this.size.getHeight() - 100)));
 
@@ -36,8 +41,10 @@ public class GameBoard {
     }
 
     public void update() {
+        this.frameCounter++;
         moveShots();
         getSpaceship().move();
+
     }
 
     public boolean isRunning() {
@@ -85,8 +92,10 @@ public class GameBoard {
     }
 
     public void shoot() {
-        if (playerShots.size() < 5)
+        if (playerShots.size() < 5 && frameCounter > RECHARGE_TIME) {
             playerShots.add(new Shot(getSpaceship().getPosition()));
+            this.frameCounter = 0;
+        }
     }
 
     public Spaceship getSpaceship() {
