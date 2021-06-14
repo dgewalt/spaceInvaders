@@ -109,16 +109,27 @@ public class UserInputController {
     }
     
     private void startKeyHandler() {
+        //when key is pressed speed of spaceship is set to +/-MAXSPEED
+        //when key is release speed of spaceship is zeroed -> makes the animation smoother
     	gameScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
                 switch (event.getCode()) {
-                    case A: System.out.println("A"); break;
-                    case W: ;break;
+                    case A, LEFT: gameBoard.steerLeft();break;
+                    case W: gameBoard.shoot();break;
                     case S: ;break;
-                    case D: ;break;
-                    case SPACE: ;break;
+                    case D, RIGHT: gameBoard.steerRight();break;
+                    case SPACE: gameBoard.shoot();break;
                 }
+            }
+        });
+
+    	gameScene.setOnKeyReleased(event -> {
+            switch (event.getCode()) {
+                case A, LEFT: gameBoard.stopSteer();break;
+
+                case D, RIGHT: gameBoard.stopSteer();break;
+
             }
         });
     }

@@ -8,8 +8,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import main.java.model.Dimension2D;
-import main.java.model.GameBoard;
+import main.java.model.*;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -29,7 +28,7 @@ public class UserInterface extends Pane {
     private static final Color BACKGROUND_COLOR = Color.WHITE;
 
     private static final int UPDATE_PERIOD = 1000 / 25;
-    private static final int DEFAULT_WIDTH = 500;
+    private static final int DEFAULT_WIDTH = 600;
     private static final int DEFAULT_HEIGHT = 600;
 
     private static final Dimension2D DEFAULT_SIZE = new Dimension2D(DEFAULT_WIDTH, DEFAULT_HEIGHT);
@@ -51,17 +50,25 @@ public class UserInterface extends Pane {
         canvas.setHeight(DEFAULT_HEIGHT - 50);
         setupUIElements();
 
+        canvas.setFocusTraversable(true);
+
     }
 
     private void setupUIElements() {
         startGame = new Button("Start Game");
         stopGame = new Button("Stop Game");
+
+        startGame.setOnMouseClicked(e -> startGame());
+        stopGame.setOnMouseClicked(e -> stopGame());
+
         gameLabel = new Label("Space Invaders");
-        startGame.setVisible(true);
-        startGame.setMinSize(50, 20);
         gameToolBar = new HBox(startGame, stopGame, gameLabel);
 
         vBox = new VBox(gameToolBar, canvas);
+
+        gameToolBar.setFocusTraversable(false);
+        startGame.setFocusTraversable(false);
+        stopGame.setFocusTraversable(false);
 
         this.getChildren().add(vBox);
 
@@ -98,23 +105,46 @@ public class UserInterface extends Pane {
         this.gameTimer.scheduleAtFixedRate(timerTask, UPDATE_PERIOD, UPDATE_PERIOD);
     }
     
-    void paintObjects() {
-    	
+    void paintObject(MovingObject object) {
+        Point2D position = object.getPosition();
+        Dimension2D size = object.getSize();
+
+        //nur temporär, später werden die icons gezeichnet
+        canvas.getGraphicsContext2D().setFill(Color.BLACK);
+        canvas.getGraphicsContext2D().fillRect(position.getX(), position.getY(), size.getWidth(), size.getHeight());
     }
 
     private void updateGame() {
         if (gameBoard.isRunning()) {
-            // updates car positions and re-renders graphics
+            // updates object positions and repaints graphics
             gameBoard.update();
             paint();
         }
     }
 
     private void paint() {
+        canvas.getGraphicsContext2D().setFill(BACKGROUND_COLOR);
+        canvas.getGraphicsContext2D().fillRect(0,0 , canvas.getWidth(), canvas.getHeight());
+
+        //paint player spaceship
+        paintObject(gameBoard.getSpaceship());
+
+        for (Alien alien : gameBoard.getAliens()) {
+            paintObject(alien);
+        }
+
+        for (Shot playerShot : gameBoard.getPlayerShots()) {
+            System.out.println("test");
+            paintObject(playerShot);
+        }
+
+        for (Shot alienShot : gameBoard.getAlienShots()) {
+            paintObject(alienShot);
+        }
 
     }
     
-    
+
 
 
 }

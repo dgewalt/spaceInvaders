@@ -10,6 +10,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import main.java.controller.UserInputController;
+import main.java.model.Dimension2D;
 import main.java.model.GameBoard;
 
 public class SpaceInvadersApplication extends Application {
@@ -28,8 +29,9 @@ public class SpaceInvadersApplication extends Application {
         primaryStage.setWidth(APPLICATION_WIDTH);
         primaryStage.setHeight(APPLICATION_HEIGHT);
         primaryStage.setResizable(false);
+        primaryStage.setOnCloseRequest(e -> System.exit(0));
 
-        gameBoard = new GameBoard(200);
+        gameBoard = new GameBoard(APPLICATION_WIDTH, APPLICATION_HEIGHT);
         UserInterface ui = new UserInterface(gameBoard);
         gameBoard.setUi(ui);
 
