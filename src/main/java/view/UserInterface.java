@@ -1,13 +1,16 @@
 package main.java.view;
 
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.control.Alert.AlertType;
 import main.java.model.*;
 
 import java.util.Timer;
@@ -17,7 +20,7 @@ public class UserInterface extends Pane {
 
 
     private VBox vBox;
-    private HBox gameToolBar ;
+    private HBox gameToolBar;
     private Button startGame;
     private Button stopGame;
     private Label gameLabel;
@@ -73,7 +76,6 @@ public class UserInterface extends Pane {
         this.getChildren().add(vBox);
 
 
-
     }
 
     public void startGame() {
@@ -104,7 +106,7 @@ public class UserInterface extends Pane {
         this.gameTimer = new Timer();
         this.gameTimer.scheduleAtFixedRate(timerTask, UPDATE_PERIOD, UPDATE_PERIOD);
     }
-    
+
     void paintObject(MovingObject object) {
         Point2D position = object.getPosition();
         Dimension2D size = object.getSize();
@@ -118,13 +120,22 @@ public class UserInterface extends Pane {
         if (gameBoard.isRunning()) {
             // updates object positions and repaints graphics
             gameBoard.update();
+            if (this.gameBoard.getGameOutcome() == GameOutcome.LOST) {
+                //todo bumpers async alert
+                System.out.println("Oh.. you lost.");
+                this.stopGame();
+            } else if (this.gameBoard.getGameOutcome() == GameOutcome.WON) {
+                //todo bumpers async alert
+                System.out.println("Congratulations! You won!!");
+                this.stopGame();
+            }
             paint();
         }
     }
 
     private void paint() {
         canvas.getGraphicsContext2D().setFill(BACKGROUND_COLOR);
-        canvas.getGraphicsContext2D().fillRect(0,0 , canvas.getWidth(), canvas.getHeight());
+        canvas.getGraphicsContext2D().fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
         //paint player spaceship
         paintObject(gameBoard.getSpaceship());
@@ -143,8 +154,6 @@ public class UserInterface extends Pane {
         }
 
     }
-    
-
 
 
 }

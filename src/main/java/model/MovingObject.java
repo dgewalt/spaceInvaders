@@ -10,6 +10,7 @@ public abstract class MovingObject {
     protected double speed;
 
     private String icon;
+    private boolean crunched;
 
     private Dimension2D size = new Dimension2D(DEFAULT_WIDTH, DEFAULT_HEIGHT);
 
@@ -29,4 +30,15 @@ public abstract class MovingObject {
     }
 
 
+    public void crunch() {
+        this.crunched = true;
+        this.speed = 0;
+    }
+    public boolean isCrunched() {
+        return this.crunched;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
 }

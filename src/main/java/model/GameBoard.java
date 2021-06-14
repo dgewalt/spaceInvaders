@@ -3,8 +3,10 @@ package main.java.model;
 import javafx.util.converter.ShortStringConverter;
 import main.java.view.UserInterface;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class GameBoard {
 
@@ -26,6 +28,7 @@ public class GameBoard {
 
 
     private boolean running;
+    private GameOutcome gameOutcome = GameOutcome.OPEN;
 
     public GameBoard(int width, int height) {
         this.size = new Dimension2D(width, height);
@@ -44,6 +47,7 @@ public class GameBoard {
         this.frameCounter++;
         moveShots();
         getSpaceship().move();
+        checkCollisions();
 
     }
 
@@ -66,7 +70,7 @@ public class GameBoard {
     public void moveShots() {
         for (int i = playerShots.size() - 1; i >= 0; i--) {
             Shot playershot = playerShots.get(i);
-            if (playershot.getPosition().getY() <= 0 ) {
+            if (playershot.getPosition().getY() <= 0) {
                 playerShots.remove(i);
             } else {
                 System.out.println(playershot.getPosition().toString());
@@ -76,6 +80,44 @@ public class GameBoard {
     }
 
     public void moveAliens() {
+
+    }
+
+    public void checkCollisions() {
+        collisionHelp(aliens, playerShots);
+        List temp = new ArrayList();
+        temp.add(currentPlayer.getSpaceship());
+        collisionHelp(temp, alienShots);
+        collisionHelp(temp, aliens);
+    }
+
+    private void collisionHelp(List<? extends MovingObject> list1, List<? extends MovingObject> list2) {
+        //TODO noch kein sound bei crash implementiert
+        A:
+        for (MovingObject object1 : list1) {
+            if (object1.isCrunched())
+                continue;
+            for (MovingObject object2 : list2) {
+                if (object2.isCrunched())
+                    continue;
+                if (new Collision(object1, object2).isCrash()) {
+                    object1.crunch();
+                    object2.crunch();
+                    object1.setSpeed(0);
+                    object2.setSpeed(0);
+                    continue A;
+                }
+            }
+        }
+        if (currentPlayer.getSpaceship().isCrunched())
+            gameOutcome = GameOutcome.LOST;
+
+        aliens = aliens.stream().filter(o -> !o.isCrunched()).collect(Collectors.toList());
+        playerShots = playerShots.stream().filter(o -> !o.isCrunched()).collect(Collectors.toList());
+        alienShots = alienShots.stream().filter(o -> !o.isCrunched()).collect(Collectors.toList());
+
+        if (aliens.size() == 0)
+            gameOutcome = GameOutcome.WON;
 
     }
 
@@ -97,6 +139,7 @@ public class GameBoard {
             this.frameCounter = 0;
         }
     }
+
 
     public Spaceship getSpaceship() {
         return this.currentPlayer.getSpaceship();
@@ -124,5 +167,9 @@ public class GameBoard {
 
     public UserInterface getUi() {
         return ui;
+    }
+
+    public GameOutcome getGameOutcome() {
+        return gameOutcome;
     }
 }
