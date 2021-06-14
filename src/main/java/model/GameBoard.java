@@ -89,6 +89,7 @@ public class GameBoard {
         temp.add(currentPlayer.getSpaceship());
         collisionHelp(temp, alienShots);
         collisionHelp(temp, aliens);
+        collisionHelp(alienShots,playerShots);
     }
 
     private void collisionHelp(List<? extends MovingObject> list1, List<? extends MovingObject> list2) {
