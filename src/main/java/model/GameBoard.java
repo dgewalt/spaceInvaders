@@ -20,7 +20,7 @@ public class GameBoard {
     private final Player currentPlayer;
     private Player[] leaderBoard;
 
-    private List<Alien> aliens;
+    private List<Alien> aliens; //-----------------------------------------
     private List<Shot> playerShots;
     private List<Shot> alienShots;
 
@@ -34,13 +34,13 @@ public class GameBoard {
         this.currentPlayer = new Player(new Spaceship(new Point2D(this.size.getWidth() / 2, this.size.getHeight() - 100)));
 
 
-        aliens = new LinkedList<>();
+        aliens = new LinkedList<>(); //-------------------------------------------------
         playerShots = new LinkedList<>();
         alienShots = new LinkedList<>();
 
     }
     
-    //
+    //Aliens hinzufügen
     public void update() {
         this.frameCounter++;
         moveShots();
@@ -59,19 +59,11 @@ public class GameBoard {
     public void stopGame() {
         this.running = false;
     }
-<<<<<<< HEAD
-    
-    //TODO: Zweck? löschen?
-=======
 
->>>>>>> 51d0daddb678140ac2f7ec75a57a0a906affc913
+    //wofür ist diese Methode gedacht?
     public void configureGame() {
 
     }
-<<<<<<< HEAD
-    
-    //TODO: Zweck? löschen?
-=======
 
     public void moveShots() {
         for (int i = playerShots.size() - 1; i >= 0; i--) {
@@ -84,10 +76,18 @@ public class GameBoard {
             }
         }
     }
-
->>>>>>> 51d0daddb678140ac2f7ec75a57a0a906affc913
-    public void moveAliens() {
-
+    //Gameboard Size 600x600 
+    private void moveAliens() {
+    	for ( int i = aliens.size()-1; i >= 0; i--) {
+    		Alien alien = aliens.get(i);
+    		if(alien.getPosition().getY() <= 0) {
+    			aliens.remove(i);
+    			//TODO
+    			//Game is lost!
+    		} else {
+    			alien.move();
+    		}
+    	}
     }
 
     public void steerRight() {
@@ -133,7 +133,7 @@ public class GameBoard {
         this.ui = ui;
     }
 
-    public UserInterface getUi() {
+    public UserInterface getUi() {    
         return ui;
     }
 }
