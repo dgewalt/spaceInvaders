@@ -50,6 +50,8 @@ public class UserInterface extends Pane {
         canvas.setHeight(DEFAULT_HEIGHT - 50);
         setupUIElements();
 
+        canvas.setFocusTraversable(true);
+
     }
 
     private void setupUIElements() {
@@ -63,6 +65,10 @@ public class UserInterface extends Pane {
         gameToolBar = new HBox(startGame, stopGame, gameLabel);
 
         vBox = new VBox(gameToolBar, canvas);
+
+        gameToolBar.setFocusTraversable(false);
+        startGame.setFocusTraversable(false);
+        stopGame.setFocusTraversable(false);
 
         this.getChildren().add(vBox);
 
@@ -128,6 +134,7 @@ public class UserInterface extends Pane {
         }
 
         for (Shot playerShot : gameBoard.getPlayerShots()) {
+            System.out.println("test");
             paintObject(playerShot);
         }
 

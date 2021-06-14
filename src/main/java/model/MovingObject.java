@@ -7,7 +7,8 @@ public abstract class MovingObject {
 
 
     private Point2D position;
-    private int speed;
+    protected double speed;
+
     private String icon;
 
     private Dimension2D size = new Dimension2D(DEFAULT_WIDTH, DEFAULT_HEIGHT);
