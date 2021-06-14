@@ -10,4 +10,8 @@ public class Player {
     public Player(Spaceship spaceship) {
         this.spaceship = spaceship;
     }
+
+    public Spaceship getSpaceship() {
+        return spaceship;
+    }
 }
