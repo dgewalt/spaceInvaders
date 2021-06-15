@@ -13,8 +13,15 @@ public class Spaceship extends MovingObject{
 	}
 	@Override
 	public void move() {
-		// TODO Auto-generated method stub
-		setPosition(getPosition().getX() + speed, getPosition().getY());
+		if(getPosition().getX()>5 && getPosition().getX()<570) {
+			setPosition(getPosition().getX() + speed, getPosition().getY());
+		}else {
+			if(getPosition().getX()<=5) {
+				setPosition(10, getPosition().getY());
+			}else {
+				setPosition(565, getPosition().getY());
+			}
+		}
 //		speed = speed >= 1 ? speed - 0.4 : speed <= -1 ? speed + 0.4 : 0;
 	}
 
