@@ -65,13 +65,14 @@ public class UserInterface extends Pane {
         stopGame.setOnMouseClicked(e -> stopGame());
 
         gameLabel = new Label("Space Invaders");
-        scoreLabel=new Label("Score: 0          ");
-        Region placeholder = new Region();
-        HBox.setHgrow(placeholder, Priority.ALWAYS);
+        scoreLabel = new Label("Score: 0          ");
+        Region placeholder1 = new Region();
+        HBox.setHgrow(placeholder1, Priority.ALWAYS);
+        Region placeholder2 = new Region();
+        HBox.setHgrow(placeholder2, Priority.ALWAYS);
 
 
-
-        gameToolBar = new HBox(startGame, stopGame, gameLabel,placeholder,scoreLabel);
+        gameToolBar = new HBox(startGame, stopGame, placeholder1, gameLabel, placeholder2, scoreLabel);
 
         vBox = new VBox(gameToolBar, canvas);
 
@@ -135,7 +136,7 @@ public class UserInterface extends Pane {
                 System.out.println("Congratulations! You won!!");
                 this.stopGame();
             }
-            Platform.runLater(()-> scoreLabel.setText("Score: "+ gameBoard.getHighScore()+"          "));
+            Platform.runLater(() -> scoreLabel.setText("Score: " + gameBoard.getHighScore() + "          "));
 
 
             paint();
