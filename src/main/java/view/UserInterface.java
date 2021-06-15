@@ -6,9 +6,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.control.Alert.AlertType;
 import main.java.model.*;
@@ -24,6 +22,8 @@ public class UserInterface extends Pane {
     private Button startGame;
     private Button stopGame;
     private Label gameLabel;
+    private Label scoreLabel;
+
 
     private final Canvas canvas;
     private final GameBoard gameBoard;
@@ -65,7 +65,13 @@ public class UserInterface extends Pane {
         stopGame.setOnMouseClicked(e -> stopGame());
 
         gameLabel = new Label("Space Invaders");
-        gameToolBar = new HBox(startGame, stopGame, gameLabel);
+        scoreLabel=new Label("Score: 0          ");
+        Region placeholder = new Region();
+        HBox.setHgrow(placeholder, Priority.ALWAYS);
+
+
+
+        gameToolBar = new HBox(startGame, stopGame, gameLabel,placeholder,scoreLabel);
 
         vBox = new VBox(gameToolBar, canvas);
 
@@ -129,11 +135,15 @@ public class UserInterface extends Pane {
                 System.out.println("Congratulations! You won!!");
                 this.stopGame();
             }
+            Platform.runLater(()-> scoreLabel.setText("Score: "+ gameBoard.getHighScore()+"          "));
+
+
             paint();
         }
     }
 
     private void paint() {
+
         canvas.getGraphicsContext2D().setFill(BACKGROUND_COLOR);
         canvas.getGraphicsContext2D().fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
