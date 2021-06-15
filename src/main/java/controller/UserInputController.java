@@ -59,7 +59,7 @@ public class UserInputController {
     }
     
     public void alien1Clicked() throws Exception{
-    	
+    	gameBoard.setAlienImage("Alien1.png");	
     }
     public void alien2Clicked() throws Exception{
     	

@@ -145,7 +145,7 @@ public class UserInterface extends Pane {
         }
 
         for (Shot playerShot : gameBoard.getPlayerShots()) {
-            System.out.println("test");
+            //System.out.println("test");
             paintObject(playerShot);
         }
 

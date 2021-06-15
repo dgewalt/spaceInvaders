@@ -12,7 +12,6 @@ import java.util.stream.Collectors;
 public class GameBoard {
 
 	private Dimension2D size;
-	private String background;
 	private UserInterface ui;
 
 	// enables measuring time for minimum time span between shots
@@ -30,6 +29,10 @@ public class GameBoard {
     private boolean alienLeft;
     private boolean running;
     private GameOutcome gameOutcome = GameOutcome.OPEN;
+    
+    private String alienImage;
+    private String spaceshipImage;
+    private String backgroundImage;
 
 	public GameBoard(int width, int height) {
 		this.size = new Dimension2D(width, height);
@@ -80,7 +83,7 @@ public class GameBoard {
 			if (playershot.getPosition().getY() <= 0) {
 				playerShots.remove(i);
 			} else {
-				System.out.println(playershot.getPosition().toString());
+				//System.out.println(playershot.getPosition().toString());
 				playershot.move();
 			}
 		}
@@ -253,4 +256,30 @@ public class GameBoard {
     public GameOutcome getGameOutcome() {
         return gameOutcome;
     }
+
+	public String getAlienImage() {
+		return alienImage;
+	}
+
+	public void setAlienImage(String alienImage) {
+		this.alienImage = alienImage;
+	}
+
+	public String getSpaceshipImage() {
+		return spaceshipImage;
+	}
+
+	public void setSpaceshipImage(String spaceshipImage) {
+		this.spaceshipImage = spaceshipImage;
+	}
+
+	public String getBackgroundImage() {
+		return backgroundImage;
+	}
+
+	public void setBackgroundImage(String backgroundImage) {
+		this.backgroundImage = backgroundImage;
+	}
+    
+    
 }
