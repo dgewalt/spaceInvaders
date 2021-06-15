@@ -13,7 +13,7 @@ public class Alien extends MovingObject {
 	}
 
 	public void moveDown() {
-		setPosition(getPosition().getX(), getPosition().getY() + 1);
+		setPosition(getPosition().getX(), getPosition().getY() + 25);
 	}
 
 	public void moveRight() {
