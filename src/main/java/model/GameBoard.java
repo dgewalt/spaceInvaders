@@ -208,7 +208,7 @@ public class GameBoard {
 
     }
 	public void steerRight() {
-		currentPlayer.getSpaceship().moveRight();
+		getSpaceship().moveRight();
 	}
 
 	public void steerLeft() {
