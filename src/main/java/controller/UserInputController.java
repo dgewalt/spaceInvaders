@@ -97,12 +97,6 @@ public class UserInputController {
 
         stage.setScene(new Scene(root));
     }
-    
-
-
-    void keyboardInput() {
-
-    }
 
     public void setGameBoard(GameBoard gameBoard) {
         this.gameBoard = gameBoard;
