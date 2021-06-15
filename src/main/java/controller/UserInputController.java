@@ -110,10 +110,10 @@ public class UserInputController {
             public void handle(KeyEvent event) {
                 switch (event.getCode()) {
                     case A, LEFT: gameBoard.steerLeft();break;
-                    case W: gameBoard.shoot();break;
+                    case W: gameBoard.playerShoot();break;
                     case S: ;break;
                     case D, RIGHT: gameBoard.steerRight();break;
-                    case SPACE: gameBoard.shoot();break;
+                    case SPACE: gameBoard.playerShoot();break;
                 }
             }
         });

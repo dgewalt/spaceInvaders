@@ -3,9 +3,11 @@ package main.java.model;
 import javafx.util.converter.ShortStringConverter;
 import main.java.view.UserInterface;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 public class GameBoard {
 
@@ -35,14 +37,13 @@ public class GameBoard {
 		this.currentPlayer = new Player(
 				new Spaceship(new Point2D(this.size.getWidth() / 2, this.size.getHeight() - 100)));
 
-		aliens = new LinkedList<>();
+		aliens = new ArrayList<>();
 		playerShots = new LinkedList<>();
 		alienShots = new LinkedList<>();
 		
 		//direction of aliens is RIGHT at the start of the game 
 		alienLeft = false;
 		//inital aliens
-		//aliens.add(new Alien(new Point2D(100, 25)));
 		for(int y = 25; y < 100; y+=50) {
 			for(int x = 100; x < (size.getWidth()-100); x+=50) {
 				aliens.add(new Alien(new Point2D(x, y)));
@@ -53,9 +54,11 @@ public class GameBoard {
 
 	public void update() {
 		this.frameCounter++;
-		moveShots();
+		movePlayerShots();
 		getSpaceship().move();
 		moveAliens();
+		moveAlienShots();
+		alienShoot(); // am besten auch nur randomly ausführen lassen, sonst kommen immer gleichmäßig Schüsse
 	}
 
 	public boolean isRunning() {
@@ -70,7 +73,7 @@ public class GameBoard {
 		this.running = false;
 	}
 
-	public void moveShots() {
+	public void movePlayerShots() {
 		for (int i = playerShots.size() - 1; i >= 0; i--) {
 			Shot playershot = playerShots.get(i);
 			if (playershot.getPosition().getY() <= 0) {
@@ -81,8 +84,20 @@ public class GameBoard {
 			}
 		}
 	}
+	
+	public void moveAlienShots() {
+		for (int i = playerShots.size() - 1; i >= 0; i--) {
+			Shot alienShot = alienShots.get(i);
+			if (alienShot.getPosition().getY() <= 0) {
+				playerShots.remove(i);
+			} else {
+				alienShot.moveAlienShot();
+			}
+		}
+	}
 
 	public void moveAliens() {
+		//Irgendwo prüfen, dass noch aliens da sind!!
 		if(getLeastYPosition() >= size.getHeight() - 25) {
 			// Game is lost!
 		}
@@ -156,12 +171,6 @@ public class GameBoard {
 		}
 		return (int) y;
 	}
-	
-	/*private LinkedList<Alien> initalizeAliens() {
-		List<Alien> initializedAliens = new LinkedList<Alien>();
-		initializedAliens.add(new Alien(new Point2D(100, 25)));
-		return (LinkedList<Alien>) initializedAliens;
-	}*/
 
 	public void steerRight() {
 		currentPlayer.getSpaceship().moveRight();
@@ -175,13 +184,28 @@ public class GameBoard {
 		getSpaceship().stopMove();
 	}
 
-	public void shoot() {
+	public void playerShoot() {
 		if (playerShots.size() < 5 && frameCounter > RECHARGE_TIME) {
 			playerShots.add(new Shot(getSpaceship().getPosition()));
 			this.frameCounter = 0;
 		}
 	}
 
+	public void alienShoot() {
+		alienShootHelp(chooseRandomAlien());
+	}
+	
+	private Alien chooseRandomAlien() {
+		Random r = new Random();
+		return aliens.get(r.nextInt(aliens.size()));
+	}
+	
+	private void alienShootHelp(Alien alien) {
+		if(alienShots.size() < 10) { //max 10 alien shots exist at a time 
+			alienShots.add(new Shot(alien.getPosition()));
+		}
+	}
+	
 	public Spaceship getSpaceship() {
 		return this.currentPlayer.getSpaceship();
 	}

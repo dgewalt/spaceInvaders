@@ -9,11 +9,11 @@ public class Alien extends MovingObject {
 	@Override
 	public void move() {
 		// TODO Auto-generated method stub
-		// muss ich die hier verwenden?
+		// muss ich diese Methode verwenden? ist nicht so praktisch...
 	}
 
 	public void moveDown() {
-		setPosition(getPosition().getX(), getPosition().getY() + 1);
+		setPosition(getPosition().getX(), getPosition().getY() + 5);
 	}
 
 	public void moveRight() {
