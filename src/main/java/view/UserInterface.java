@@ -7,16 +7,12 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.control.Alert.AlertType;
-import main.java.controller.UserInputController;
 import main.java.model.*;
-import javafx.scene.image.Image;
 
-import java.awt.*;
 import java.net.URL;
-import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -36,6 +32,7 @@ public class UserInterface extends Pane {
 
     private static final Color BACKGROUND_COLOR = Color.WHITE;
 
+
     private static final int UPDATE_PERIOD = 1000 / 25;
     private static final int DEFAULT_WIDTH = 600;
     private static final int DEFAULT_HEIGHT = 600;
@@ -48,9 +45,9 @@ public class UserInterface extends Pane {
 
     private Timer gameTimer;
 
-    private HashMap<String, Image> alienimageCache;
-    private HashMap<String, Image> spaceshipimageCache;
-    private HashMap<String, Image> backgroundimageCache;
+    private Image alienImage;
+    private Image spaceShipImage;
+    private Image backgroundImage;
 
     public UserInterface(GameBoard gameBoard) {
         this.gameBoard = gameBoard;
@@ -95,6 +92,8 @@ public class UserInterface extends Pane {
 
     }
 
+
+
     public void startGame() {
         if (!this.gameBoard.isRunning()) {
             this.gameBoard.startGame();
@@ -124,15 +123,53 @@ public class UserInterface extends Pane {
         this.gameTimer.scheduleAtFixedRate(timerTask, UPDATE_PERIOD, UPDATE_PERIOD);
     }
 
-    void paintObject(MovingObject object) {
-        Point2D position = object.getPosition();
-        Dimension2D size = object.getSize();
+    void paintShot(Shot shot) {
+        Point2D position = shot.getPosition();
+        Dimension2D size = shot.getSize();
 
-        //nur temporär, später werden die icons gezeichnet
         canvas.getGraphicsContext2D().setFill(Color.BLACK);
         canvas.getGraphicsContext2D().fillRect(position.getX(), position.getY(), size.getWidth(), size.getHeight());
-
     }
+
+    private void paintAliens() {
+        if (alienImage == null) {
+            URL alienURL = getClass().getClassLoader().getResource(gameBoard.getAlienImage());
+            if (alienURL == null) {
+                throw new IllegalArgumentException("Please ensure that the resources folder contains the required files.");
+            }
+            alienImage = new Image(alienURL.toExternalForm());
+        }
+        for (Alien alien : gameBoard.getAliens()) {
+            Point2D alienPos = alien.getPosition();
+            canvas.getGraphicsContext2D().drawImage(this.alienImage, alienPos.getX(), alienPos.getY(), alien.getSize().getWidth(), alien.getSize().getHeight());
+        }
+    }
+
+    private void paintSpaceship() {
+        if (spaceShipImage == null) {
+            URL spaceshipURL = getClass().getClassLoader().getResource(gameBoard.getSpaceshipImage());
+            if (spaceshipURL == null) {
+                throw new IllegalArgumentException("Please ensure that the resources folder contains the required files.");
+            }
+            spaceShipImage = new Image(spaceshipURL.toExternalForm());
+        }
+        Point2D spaceshipPos = gameBoard.getSpaceship().getPosition();
+        Dimension2D spaceshipSize = gameBoard.getSpaceship().getSize();
+        canvas.getGraphicsContext2D().drawImage(this.spaceShipImage, spaceshipPos.getX(), spaceshipPos.getY(), spaceshipSize.getWidth(), spaceshipSize.getHeight());
+    }
+
+    private void paintBackground() {
+        if (backgroundImage == null) {
+            URL backgroundURL = getClass().getClassLoader().getResource(gameBoard.getBackgroundImage());
+            if (backgroundURL == null) {
+                throw new IllegalArgumentException("Please ensure that the resources folder contains the required files.");
+            }
+            backgroundImage = new Image(backgroundURL.toExternalForm());
+        }
+        canvas.getGraphicsContext2D().drawImage(backgroundImage,0, 0, canvas.getWidth(), canvas.getHeight());
+    }
+
+
 
     private void updateGame() {
         if (gameBoard.isRunning()) {
@@ -154,80 +191,28 @@ public class UserInterface extends Pane {
         }
     }
 
-
-
     private void paint() {
 
-        canvas.getGraphicsContext2D().setFill(BACKGROUND_COLOR);
-        canvas.getGraphicsContext2D().fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+//        canvas.getGraphicsContext2D().setFill(BACKGROUND_COLOR);
+//        canvas.getGraphicsContext2D().fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+
+        paintBackground();
 
         //paint player spaceship
-        setupSpaceshipImageCache();
-        paintSpaceship(gameBoard.getSpaceship());
-
-        setupAlienImageCache();
+        paintSpaceship();
         for (Alien alien : gameBoard.getAliens()) {
-            paintAlien(alien);
+            paintAliens();
         }
 
         for (Shot playerShot : gameBoard.getPlayerShots()) {
-            //System.out.println("test");
-            paintObject(playerShot);
+            paintShot(playerShot);
         }
 
         for (Shot alienShot : gameBoard.getAlienShots()) {
-            paintObject(alienShot);
+            paintShot(alienShot);
         }
+
     }
 
-    private void paintAlien(Alien alien) {
-        Point2D alienPosition = alien.getPosition();
 
-        canvas.getGraphicsContext2D().drawImage(this.alienimageCache.get(gameBoard.getAlienImage()), alienPosition.getX(),
-                alienPosition.getY(), alien.getSize().getWidth(), alien.getSize().getHeight());
-    }
-
-    private void paintSpaceship(Spaceship spaceship) {
-        Point2D spaceshipPosition = spaceship.getPosition();
-
-        canvas.getGraphicsContext2D().drawImage(this.spaceshipimageCache.get(gameBoard.getSpaceshipImage()), spaceshipPosition.getX(),
-                spaceshipPosition.getY(), spaceship.getSize().getWidth(), spaceship.getSize().getHeight());
-    }
-
-    private void setupAlienImageCache() {
-        this.alienimageCache = new HashMap<>();
-        for (Alien alien : this.gameBoard.getAliens()) {
-            String imageLocation = gameBoard.getAlienImage();
-            this.alienimageCache.computeIfAbsent(imageLocation, this::getAlienImage);
-        }
-        String alienImageLocation = this.gameBoard.getAlienImage();
-        this.alienimageCache.put(alienImageLocation, getAlienImage(alienImageLocation));
-    }
-
-    private Image getAlienImage(String alienImage) {
-        URL alienImageUrl = getClass().getClassLoader().getResource(alienImage);
-        if (alienImageUrl == null) {
-            throw new IllegalArgumentException(
-                    "Please ensure that your resources folder contains the appropriate files for this exercise.");
-        }
-        return new Image(alienImageUrl.toExternalForm());
-    }
-
-    private void setupSpaceshipImageCache() {
-        this.spaceshipimageCache = new HashMap<>();
-        String imageLocation = gameBoard.getSpaceshipImage();
-        this.spaceshipimageCache.computeIfAbsent(imageLocation, this::getSpaceshipImage);
-
-        String spaceshipImageLocation = this.gameBoard.getSpaceshipImage();
-        this.spaceshipimageCache.put(spaceshipImageLocation, getSpaceshipImage(spaceshipImageLocation));
-    }
-
-    private Image getSpaceshipImage(String spaceshipFilePath) {
-        URL spaceshipImageUrl = getClass().getClassLoader().getResource(spaceshipFilePath);
-        if (spaceshipImageUrl == null) {
-            throw new IllegalArgumentException(
-                    "Please ensure that your resources folder contains the appropriate files for this exercise.");
-        }
-        return new Image(spaceshipImageUrl.toExternalForm());
-    }
 }

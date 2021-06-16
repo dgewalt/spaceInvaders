@@ -235,7 +235,8 @@ public class GameBoard {
 
 	public void playerShoot() {
 		if (playerShots.size() < 5 && frameCounter > RECHARGE_TIME) {
-			playerShots.add(new Shot(getSpaceship().getPosition()));
+			Point2D shotPos = new Point2D(getSpaceship().getPosition().getX() + getSpaceship().getSize().getWidth() / 2, getSpaceship().getPosition().getY());
+			playerShots.add(new Shot(shotPos));
 			this.frameCounter = 0;
 		}
 	}
