@@ -46,7 +46,6 @@ public class SpaceInvadersApplication extends Application {
 
 
 
-
         Scene mainMenu = new Scene(root);
         primaryStage.setScene(mainMenu);
         primaryStage.show();

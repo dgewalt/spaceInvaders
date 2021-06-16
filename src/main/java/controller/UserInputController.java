@@ -5,10 +5,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import main.java.model.Alien;
 import main.java.model.GameBoard;
+
+import java.net.URL;
+import java.util.HashMap;
 
 public class UserInputController {
 
@@ -59,33 +64,33 @@ public class UserInputController {
     }
     
     public void alien1Clicked() throws Exception{
-    	gameBoard.setAlienImage("Alien1.png");	
+    	gameBoard.setAlienImage("Alien1.png");
     }
     public void alien2Clicked() throws Exception{
-    	
+    	gameBoard.setAlienImage("Alien2.png");
     }
     public void alien3Clicked() throws Exception{
-    	
+    	gameBoard.setAlienImage("Alien3.png");
     }
     
     public void background1Clicked() throws Exception{
-    	
+    	gameBoard.setBackgroundImage("background1.jpg");
     }
     public void background2Clicked() throws Exception{
-    	
+    	gameBoard.setBackgroundImage("background2.jpg");
     }
     public void background3Clicked() throws Exception{
-
+        gameBoard.setBackgroundImage("background3.jpg");
     }
     
     public void spaceship1Clicked() throws Exception{
-    	
+    	gameBoard.setSpaceshipImage("spaceship1.png");
     }
     public void spaceship2Clicked() throws Exception{
-    	
+    	gameBoard.setSpaceshipImage("spaceship2.png");
     }
     public void spaceship3Clicked() throws Exception{
-    	
+    	gameBoard.setSpaceshipImage("spaceship3.png");
     }
 
     public void openSettings() throws Exception {

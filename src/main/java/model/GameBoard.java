@@ -33,9 +33,9 @@ public class GameBoard {
     private boolean running;
     private GameOutcome gameOutcome = GameOutcome.OPEN;
 
-    private String alienImage;
-    private String spaceshipImage;
-    private String backgroundImage;
+    private String alienImage = "Alien1.png";
+    private String spaceshipImage = "spaceship1.png";
+    private String backgroundImage = "background1.jpg";
 
 	public GameBoard(int width, int height) {
 		this.size = new Dimension2D(width, height);
@@ -242,18 +242,8 @@ public class GameBoard {
 	public void alienShoot() {
 		double s = Math.random();
 		if (s <= 0.1) {
-			if (aliens.size() >= 8) {
-				if (alienShots.size() < (aliens.size()/2)) { // max (number of existing Aliens/2) shots at a time
-					alienShots.add(new Shot(chooseRandomAlien().getPosition()));
-				}
-			} else if(aliens.size() >= 4){
-				if (alienShots.size() < aliens.size()) { // max (number of existing Aliens) shots at a time
-					alienShots.add(new Shot(chooseRandomAlien().getPosition()));
-				}
-			} else {
-				if (alienShots.size() < (aliens.size()*2)) { // max (number of existing Aliens*2) shots at a time
-					alienShots.add(new Shot(chooseRandomAlien().getPosition()));
-				}
+			if (alienShots.size() < 10) { // max 10 alien shots exist at a time
+				alienShots.add(new Shot(chooseRandomAlien().getPosition()));
 			}
 		}
 	}
