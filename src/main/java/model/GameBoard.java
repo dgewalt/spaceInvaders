@@ -57,11 +57,6 @@ public class GameBoard {
             }
         }
         alienStartingCount = aliens.size();
-
-		// inital aliens
-		for (int y = 25; y < 100; y += 50) {
-			for (int x = 100; x < (size.getWidth() - 100); x += 50) {
-
     }
 
 	public void update() {
@@ -71,7 +66,7 @@ public class GameBoard {
 		moveAliens();
 		alienShoot(); 
 		moveAlienShots();
-		checkCollisions
+		checkCollisions();
 	}
 
     public boolean isRunning() {
