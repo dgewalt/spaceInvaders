@@ -11,4 +11,9 @@ public class Shot extends MovingObject {
 		// TODO Auto-generated method stub
 		setPosition(getPosition().getX(), getPosition().getY() - 5);
 	}
+	
+	
+	public void moveAlienShot() {
+		setPosition(getPosition().getX(), getPosition().getY() + 4);
+	}
 }

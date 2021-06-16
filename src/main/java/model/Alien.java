@@ -7,10 +7,7 @@ public class Alien extends MovingObject {
 	}
 
 	@Override
-	public void move() {
-		// TODO Auto-generated method stub
-		// muss ich die hier verwenden?
-	}
+	public void move() {}
 
 	public void moveDown() {
 		setPosition(getPosition().getX(), getPosition().getY() + 25);
