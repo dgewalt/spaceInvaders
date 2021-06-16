@@ -63,33 +63,33 @@ public class UserInputController {
         startKeyHandler();
     }
     
-    public void alien1Clicked() throws Exception{
+    public void alien1Clicked() {
     	gameBoard.setAlienImage("Alien1.png");
     }
-    public void alien2Clicked() throws Exception{
+    public void alien2Clicked() {
     	gameBoard.setAlienImage("Alien2.png");
     }
-    public void alien3Clicked() throws Exception{
+    public void alien3Clicked() {
     	gameBoard.setAlienImage("Alien3.png");
     }
     
-    public void background1Clicked() throws Exception{
+    public void background1Clicked() {
     	gameBoard.setBackgroundImage("background1.jpg");
     }
-    public void background2Clicked() throws Exception{
+    public void background2Clicked() {
     	gameBoard.setBackgroundImage("background2.jpg");
     }
-    public void background3Clicked() throws Exception{
+    public void background3Clicked() {
         gameBoard.setBackgroundImage("background3.jpg");
     }
     
-    public void spaceship1Clicked() throws Exception{
+    public void spaceship1Clicked() {
     	gameBoard.setSpaceshipImage("spaceship1.png");
     }
-    public void spaceship2Clicked() throws Exception{
+    public void spaceship2Clicked() {
     	gameBoard.setSpaceshipImage("spaceship2.png");
     }
-    public void spaceship3Clicked() throws Exception{
+    public void spaceship3Clicked() {
     	gameBoard.setSpaceshipImage("spaceship3.png");
     }
 
