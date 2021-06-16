@@ -103,8 +103,9 @@ public class GameBoard {
 		}
 	}
     public void moveAliens() {
-		if (getLeastYPosition() >= size.getHeight() - 25) {
+		if (getLeastYPosition() >= size.getHeight() - 75) {
 			// Game is lost!
+			gameOutcome = GameOutcome.LOST;
 		}
 		// aliens are too far left -> move down and right
 		else if (getMinXPosition() <= 25) {
@@ -249,7 +250,7 @@ public class GameBoard {
 	}
 
 	private Alien chooseRandomAlien() {
-		int r = (int) (Math.random() * (aliens.size() - 1));
+		int r = (int) (Math.random() * (aliens.size()));
 		return aliens.get(r);
 	}
 
