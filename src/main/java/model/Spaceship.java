@@ -13,16 +13,15 @@ public class Spaceship extends MovingObject{
 	}
 	@Override
 	public void move() {
-		if(getPosition().getX()>5 && getPosition().getX()<570) {
+		if(getPosition().getX()>25 && getPosition().getX()<540) {
 			setPosition(getPosition().getX() + speed, getPosition().getY());
 		}else {
-			if(getPosition().getX()<=5) {
-				setPosition(10, getPosition().getY());
+			if(getPosition().getX()<=25) {
+				setPosition(30, getPosition().getY());
 			}else {
-				setPosition(565, getPosition().getY());
+				setPosition(535, getPosition().getY());
 			}
 		}
-//		speed = speed >= 1 ? speed - 0.4 : speed <= -1 ? speed + 0.4 : 0;
 	}
 
 	public void moveRight() {
