@@ -40,16 +40,16 @@ public class GameBoard {
 		aliens = new ArrayList<>();
 		playerShots = new LinkedList<>();
 		alienShots = new LinkedList<>();
-		
-		//direction of aliens is RIGHT at the start of the game 
+
+		// direction of aliens is RIGHT at the start of the game
 		alienLeft = false;
-		//inital aliens
-		for(int y = 25; y < 100; y+=50) {
-			for(int x = 100; x < (size.getWidth()-100); x+=50) {
+		// inital aliens
+		for (int y = 25; y < 100; y += 50) {
+			for (int x = 100; x < (size.getWidth() - 100); x += 50) {
 				aliens.add(new Alien(new Point2D(x, y)));
 			}
 		}
-		
+
 	}
 
 	public void update() {
@@ -57,8 +57,8 @@ public class GameBoard {
 		movePlayerShots();
 		getSpaceship().move();
 		moveAliens();
+		alienShoot(); 
 		moveAlienShots();
-		alienShoot(); // am besten auch nur randomly ausführen lassen, sonst kommen immer gleichmäßig Schüsse
 	}
 
 	public boolean isRunning() {
@@ -84,12 +84,12 @@ public class GameBoard {
 			}
 		}
 	}
-	
+
 	public void moveAlienShots() {
-		for (int i = playerShots.size() - 1; i >= 0; i--) {
+		for (int i = alienShots.size() - 1; i >= 0; i--) {
 			Shot alienShot = alienShots.get(i);
-			if (alienShot.getPosition().getY() <= 0) {
-				playerShots.remove(i);
+			if (alienShot.getPosition().getY() >= 600) {
+				alienShots.remove(i);
 			} else {
 				alienShot.moveAlienShot();
 			}
@@ -97,23 +97,22 @@ public class GameBoard {
 	}
 
 	public void moveAliens() {
-		//Irgendwo prüfen, dass noch aliens da sind!!
-		if(getLeastYPosition() >= size.getHeight() - 25) {
+		if (getLeastYPosition() >= size.getHeight() - 25) {
 			// Game is lost!
 		}
 		// aliens are too far left -> move down and right
 		else if (getMinXPosition() <= 25) {
 			Iterator<Alien> iterator = aliens.iterator();
-			while(iterator.hasNext()) {
+			while (iterator.hasNext()) {
 				Alien alien = iterator.next();
 				alien.moveDown();
 				alien.moveRight();
 			}
 			alienLeft = false;
 		} // aliens are too far right -> move down and left
-		else if (getMaxXPosition() >= size.getWidth() - 50) {
+		else if (getMaxXPosition() >= size.getWidth() - 65) {
 			Iterator<Alien> iterator = aliens.iterator();
-			while(iterator.hasNext()) {
+			while (iterator.hasNext()) {
 				Alien alien = iterator.next();
 				alien.moveDown();
 				alien.moveLeft();
@@ -122,14 +121,14 @@ public class GameBoard {
 		} // aliens are on their way to the left -> move left
 		else if (alienLeft == true) {
 			Iterator<Alien> iterator = aliens.iterator();
-			while(iterator.hasNext()) {
+			while (iterator.hasNext()) {
 				Alien alien = iterator.next();
 				alien.moveLeft();
 			}
 		} // aliens are on their way to the right -> move right
 		else {
 			Iterator<Alien> iterator = aliens.iterator();
-			while(iterator.hasNext()) {
+			while (iterator.hasNext()) {
 				Alien alien = iterator.next();
 				alien.moveRight();
 			}
@@ -159,7 +158,7 @@ public class GameBoard {
 		}
 		return (int) x;
 	}
-	
+
 	private int getLeastYPosition() {
 		// save min y position to y
 		Iterator<Alien> iterator = aliens.iterator();
@@ -192,20 +191,19 @@ public class GameBoard {
 	}
 
 	public void alienShoot() {
-		alienShootHelp(chooseRandomAlien());
-	}
-	
-	private Alien chooseRandomAlien() {
-		Random r = new Random();
-		return aliens.get(r.nextInt(aliens.size()));
-	}
-	
-	private void alienShootHelp(Alien alien) {
-		if(alienShots.size() < 10) { //max 10 alien shots exist at a time 
-			alienShots.add(new Shot(alien.getPosition()));
+		double s = Math.random();
+		if (s <= 0.1) {
+			if (alienShots.size() < 10) { // max 10 alien shots exist at a time
+				alienShots.add(new Shot(chooseRandomAlien().getPosition()));
+			}
 		}
 	}
-	
+
+	private Alien chooseRandomAlien() {
+		int r = (int) (Math.random() * (aliens.size() - 1));
+		return aliens.get(r);
+	}
+
 	public Spaceship getSpaceship() {
 		return this.currentPlayer.getSpaceship();
 	}
