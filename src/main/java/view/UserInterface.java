@@ -127,7 +127,7 @@ public class UserInterface extends Pane {
         Point2D position = shot.getPosition();
         Dimension2D size = shot.getSize();
 
-        canvas.getGraphicsContext2D().setFill(Color.BLACK);
+        canvas.getGraphicsContext2D().setFill(Color.YELLOW);
         canvas.getGraphicsContext2D().fillRect(position.getX(), position.getY(), size.getWidth(), size.getHeight());
     }
 
