@@ -176,12 +176,10 @@ public class UserInterface extends Pane {
             // updates object positions and repaints graphics
             gameBoard.update();
             if (this.gameBoard.getGameOutcome() == GameOutcome.LOST) {
-                //todo bumpers async alert
-                System.out.println("Oh.. you lost.");
+                showAsyncAlert("Oh.. you lost.");
                 this.stopGame();
             } else if (this.gameBoard.getGameOutcome() == GameOutcome.WON) {
-                //todo bumpers async alert
-                System.out.println("Congratulations! You won!!");
+                showAsyncAlert("Congratulations! You won!!");
                 this.stopGame();
             }
             Platform.runLater(() -> scoreLabel.setText("Score: " + gameBoard.getHighScore()+"          "));
@@ -212,6 +210,14 @@ public class UserInterface extends Pane {
             paintShot(alienShot);
         }
 
+    }
+
+    private void showAsyncAlert(String message) {
+        Platform.runLater(() -> {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(message);
+            alert.showAndWait();
+        });
     }
 
 
