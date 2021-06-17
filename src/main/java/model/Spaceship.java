@@ -37,6 +37,5 @@ public class Spaceship extends MovingObject{
 //		setPosition(getPosition().getX() - 2, getPosition().getY());
 		speed = -MAXSPEED;
 	}
-	
 
 }
