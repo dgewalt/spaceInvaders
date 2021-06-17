@@ -1,14 +1,11 @@
 package main.java.model;
 
-import javafx.util.converter.ShortStringConverter;
 import main.java.view.UserInterface;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 public class GameBoard {

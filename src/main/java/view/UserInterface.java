@@ -1,8 +1,6 @@
 package main.java.view;
 
 import javafx.application.Platform;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -88,10 +86,7 @@ public class UserInterface extends Pane {
         stopGame.setFocusTraversable(false);
 
         this.getChildren().add(vBox);
-
-
     }
-
 
 
     public void startGame() {
